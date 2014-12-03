@@ -1,7 +1,6 @@
-package repositories.impl.Dummy;
+package repositories.dummy;
 
-import java.util.ArrayList;
-import java.util.Date;
+import java.util.ArrayList; 
 import java.util.List;
 
 import domain.*;
@@ -86,11 +85,11 @@ public class DummyCarRepository implements ICarRepository{
 	@Override
 	public Car byService(boolean tiresChange, boolean oilChange,
 			boolean wash, boolean painting, boolean mechanicReapair,
-			boolean electricReapair, Date date) {
+			boolean electricReapair) {
 		
 		for(Service s:db.services)
 		{
-			if((s.isTiresChange()==tiresChange) && (s.isOilChange()==oilChange) && (s.isWash()==wash) && (s.isPainting()==painting) && (s.isMechanicReapair()==mechanicReapair) && (s.isElectricReapair()==electricReapair) && (s.getDate()==date))
+			if((s.isTiresChange()==tiresChange) && (s.isOilChange()==oilChange) && (s.isWash()==wash) && (s.isPainting()==painting) && (s.isMechanicReapair()==mechanicReapair) && (s.isElectricReapair()==electricReapair))
 				return s.getCar();
 		}
 		return null;

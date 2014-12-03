@@ -1,4 +1,4 @@
-package domain;
+Coipackage domain;
 
 public class Address extends Entity{
 	

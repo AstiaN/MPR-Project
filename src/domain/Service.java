@@ -1,7 +1,5 @@
 package domain;
 
-import java.util.Date;
-
 public class Service extends Entity{
 
 	private boolean tiresChange;
@@ -10,7 +8,6 @@ public class Service extends Entity{
 	private boolean painting;
 	private boolean mechanicReapair;
 	private boolean electricReapair;
-	private Date date;
 	
 	private Car car;
 	
@@ -58,12 +55,6 @@ public class Service extends Entity{
 		this.electricReapair = electricReapair;
 	}
 	
-	public Date getDate() {
-		return date;
-	}
-	public void setDate(Date date) {
-		this.date = date;
-	}
 	
 	/* */
 	

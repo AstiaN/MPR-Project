@@ -1,4 +1,4 @@
-package repositories.impl.Dummy;
+package repositories.dummy;
 
 import java.util.ArrayList;
 import java.util.List;
