@@ -1,4 +1,4 @@
-package repositories.dummy;
+package repositories.impl.dummy;
 
 import repositories.*;
 

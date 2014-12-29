@@ -1,18 +1,18 @@
 package repositories.impl;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.*;
+import java.util.*;
 
 import repositories.IRepository;
-import repositories.builder.IEntityBuilder;
+import repositories.impl.builder.IEntityBuilder;
+import unitofwork.IUnitOfWork;
+import unitofwork.IUnitOfWorkRepository;
 import domain.Entity;
 
-public abstract class Repository <TEntity extends Entity> implements IRepository<TEntity>{
+public abstract class Repository <TEntity extends Entity> implements IRepository<TEntity>, IUnitOfWorkRepository{
 
+	protected IUnitOfWork uow;
+	
 	protected Connection connection;
 	
 	protected PreparedStatement selectByID;
@@ -34,8 +34,9 @@ public abstract class Repository <TEntity extends Entity> implements IRepository
 			"SELECT * FROM " + getTableName();
 	
 	protected Repository(Connection connection,
-			IEntityBuilder<TEntity> builder)
+			IEntityBuilder<TEntity> builder, IUnitOfWork ouw)
 	{
+		this.uow=uow;
 		this.builder=builder;
 		this.connection = connection;
 		try {
@@ -51,11 +52,28 @@ public abstract class Repository <TEntity extends Entity> implements IRepository
 		}
 	}
 
+	public void save(TEntity entity)
+	{
+		uow.markAsNew(entity, this);
+	}
+
+	public void update(TEntity entity)
+	{
+		uow.markAsDirty(entity, this);
+	}
+
+	public void delete(TEntity entity)
+	{
+		uow.markAsDeleted(entity, this);
+	}
+	
+	//**********************************************
+
 	@Override
-	public void save(TEntity entity) {
+	public void persistAdd(Entity entity) {
 
 		try {
-			setUpInsertQuery(entity);
+			setUpInsertQuery((TEntity)entity);
 			insert.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -64,11 +82,12 @@ public abstract class Repository <TEntity extends Entity> implements IRepository
 		
 	}
 
+
 	@Override
-	public void update(TEntity entity) {
+	public void persistUpdate(Entity entity) {
 
 		try {
-			setUpUpdateQuery(entity);
+			setUpUpdateQuery((TEntity)entity);
 			update.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -78,7 +97,7 @@ public abstract class Repository <TEntity extends Entity> implements IRepository
 	}
 
 	@Override
-	public void delete(TEntity entity) {
+	public void persistDelete(Entity entity) {
 
 		try {
 			delete.setInt(1, entity.getId());
@@ -88,7 +107,9 @@ public abstract class Repository <TEntity extends Entity> implements IRepository
 		}
 		
 	}
-
+	
+	//**********************************************
+	
 	@Override
 	public TEntity get(int id) {
 

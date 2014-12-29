@@ -31,7 +31,7 @@ public class Main {
 			Statement createTable = connection.createStatement();
 			createTable.executeUpdate(createTableSql);
 			*/
-			IRepository<User> users = new UserRepository(connection);
+		IRepository<User> users = new UserRepository(connection);
 			users.save(akowalski);
 			List<User> usersFromDb= users.getAll();
 			

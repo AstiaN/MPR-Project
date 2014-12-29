@@ -1,7 +1,6 @@
-package repositories.builder;
+package repositories.impl.builder;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 import domain.Client;
 
@@ -9,6 +8,7 @@ public class ClientBuilder implements IEntityBuilder<Client> {
 	
 	@Override
 	public Client build(ResultSet rs) throws SQLException {
+		
 		Client client = new Client();
 		client.setFirstName(rs.getString("firstName"));
 		client.setSurname(rs.getString("surname"));

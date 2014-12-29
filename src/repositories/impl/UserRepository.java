@@ -1,22 +1,19 @@
 package repositories.impl;
 
-import java.sql.Connection;  
-import java.sql.SQLException;
+import java.sql.*; 
+import java.util.*;
 
-import repositories.builder.IEntityBuilder;
-import domain.User;
+import domain.*;
+import unitofwork.IUnitOfWork;
+import repositories.IUserRepository;
 
-public class UserRepository extends Repository<User> {
 
-	public UserRepository(Connection connection, IEntityBuilder<User> builder) {
-		super(connection, builder);
+public class UserRepository 
+extends Repository<User> implements IUserRepository{
+
+	public UserRepository(Connection connection, IEntityBuilder<User> builder, IUnitOfWork uow) {
+		super(connection, builder, uow);
 	}
-	
-	protected String insertSql=
-		"INSERT INTO user (login,password) VALUES(?,?)";
-	
-	protected String updateSql=
-		"UPDATE users SET (login,password)=(?,?) WHERE id=?";
 	
 	@Override
 	protected void setUpUpdateQuery(User entity) throws SQLException {
@@ -38,12 +35,31 @@ public class UserRepository extends Repository<User> {
 	
 	@Override
 	protected String getUpdateQuery() {
-		return updateSql;
+		return "UPDATE users SET (login,password)=(?,?) WHERE id=?";
 	}
 
 	@Override
 	protected String getInsertQuery() {
-		return insertSql;
+		return "INSERT INTO user (login,password) VALUES(?,?)";
+	}
+
+	@Override
+	public List<User> ofClients(Client client) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<User> ofClients(String firstName, String surname, String pesel,
+			String email, double phoneNumber) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<User> ofClients(int clientId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

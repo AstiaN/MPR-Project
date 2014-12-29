@@ -1,7 +1,6 @@
-package repositories.builder;
+package repositories.impl.builder;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 import domain.Entity;
 

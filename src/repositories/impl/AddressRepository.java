@@ -1,15 +1,14 @@
 package repositories.impl;
 
-import java.sql.Connection;  
-import java.sql.SQLException;
+import java.sql.*;
 
-import repositories.builder.IEntityBuilder;
-import domain.Address;
+import domain.*;
+import unitofwork.IUnitOfWork;
 
 public class AddressRepository extends Repository<Address> {
 
-	protected AddressRepository(Connection connection,IEntityBuilder<Address> builder) {
-		super(connection, builder);
+	protected AddressRepository(Connection connection, IEntityBuilder<Address> builder) {
+		super(connection, builder, uow);
 	}
 	
 	protected String insertSql =

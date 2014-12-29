@@ -1,23 +1,17 @@
 package repositories.impl;
 
-import java.sql.Connection; 
-import java.sql.SQLException;
+import java.sql.*; 
 
-import repositories.builder.IEntityBuilder;
 import domain.Client;
+import unitofwork.IUnitOfWork;
 
 public class ClientRepository extends Repository<Client>{
 
-	protected ClientRepository(Connection connection,IEntityBuilder<Client> builder) {
-		super(connection, builder);
+	protected ClientRepository(Connection connection, 
+			IEntityBuilder<Client> builder, IUnitOfWork uow) {
+		super(connection, builder, uow);
 	}
 	
-	protected String insertSql =
-		"INSERT INTO client (firstName, surname, pesel, email, phoneNmber) VALUES(?,?,?,?,?)";
-	
-	protected String updateSql =
-		"UPDATE client SET (firstName, surname, pesel, email, phoneNmber) = (?,?,?,?,?) WHERE id=?";
-
 	@Override
 	protected void setUpUpdateQuery(Client entity) throws SQLException {
 		update.setString(1, entity.getFirstName());
@@ -45,12 +39,12 @@ public class ClientRepository extends Repository<Client>{
 
 	@Override
 	protected String getUpdateQuery() {
-		return updateSql;
+		return "UPDATE client SET (firstName, surname, pesel, email, phoneNmber) = (?,?,?,?,?) WHERE id=?";
 	}
 
 	@Override
 	protected String getInsertQuery() {
-		return insertSql;
+		return "INSERT INTO client (firstName, surname, pesel, email, phoneNmber) VALUES(?,?,?,?,?)";
 	}
 	
 	
