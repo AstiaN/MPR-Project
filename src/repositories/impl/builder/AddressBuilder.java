@@ -2,6 +2,7 @@ package repositories.impl.builder;
 
 import java.sql.*;
 
+import repositories.impl.IEntityBuilder;
 import domain.Address;
 
 public class AddressBuilder implements IEntityBuilder<Address> {

@@ -1,7 +1,6 @@
-package repositories.impl.builder;
+package repositories.impl;
 
-import java.sql.*;
-
+import java.sql. *;
 import domain.Entity;
 
 public interface IEntityBuilder <TEntity extends Entity> {

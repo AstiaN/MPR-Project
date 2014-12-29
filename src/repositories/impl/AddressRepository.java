@@ -7,7 +7,7 @@ import unitofwork.IUnitOfWork;
 
 public class AddressRepository extends Repository<Address> {
 
-	protected AddressRepository(Connection connection, IEntityBuilder<Address> builder) {
+	public AddressRepository(Connection connection, IEntityBuilder<Address> builder) {
 		super(connection, builder, uow);
 	}
 	

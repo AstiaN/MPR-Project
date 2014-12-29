@@ -2,6 +2,7 @@ package repositories.impl.builder;
 
 import java.sql.*;
 
+import repositories.impl.IEntityBuilder;
 import domain.Client;
 
 public class ClientBuilder implements IEntityBuilder<Client> {

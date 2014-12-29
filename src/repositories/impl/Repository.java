@@ -1,15 +1,14 @@
 package repositories.impl;
 
-import java.sql.*;
+import java.sql.*; 
 import java.util.*;
 
 import repositories.IRepository;
-import repositories.impl.builder.IEntityBuilder;
 import unitofwork.IUnitOfWork;
 import unitofwork.IUnitOfWorkRepository;
-import domain.Entity;
+import domain.*;
 
-public abstract class Repository <TEntity extends Entity> implements IRepository<TEntity>, IUnitOfWorkRepository{
+public abstract class Repository<TEntity extends Entity> implements IRepository<TEntity>, IUnitOfWorkRepository{
 
 	protected IUnitOfWork uow;
 	

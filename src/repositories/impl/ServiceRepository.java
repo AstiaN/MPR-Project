@@ -3,7 +3,6 @@ package repositories.impl;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import repositories.impl.builder.IEntityBuilder;
 import domain.Service;
 
 public class ServiceRepository extends Repository<Service>{

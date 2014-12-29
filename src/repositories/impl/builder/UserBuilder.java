@@ -3,6 +3,7 @@ package repositories.impl.builder;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import repositories.impl.IEntityBuilder;
 import domain.User;
 
 public class UserBuilder implements IEntityBuilder<User> {
