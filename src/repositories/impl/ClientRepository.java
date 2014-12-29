@@ -1,16 +1,26 @@
 package repositories.impl;
 
-import java.sql.*; 
+import java.sql.*;  
+import java.util.List;
 
+import repositories.IClientRepository;
+import domain.Address;
+import domain.Car;
 import domain.Client;
+import domain.User;
 import unitofwork.IUnitOfWork;
 
-public class ClientRepository extends Repository<Client>{
+public class ClientRepository extends Repository<Client> implements IClientRepository{
 
-	protected ClientRepository(Connection connection, 
-			IEntityBuilder<Client> builder, IUnitOfWork uow) {
+	protected ClientRepository(Connection connection, IEntityBuilder<Client> builder, IUnitOfWork uow) {
 		super(connection, builder, uow);
 	}
+	
+	protected String insertSql =
+			"INSERT INTO client (firstName, surname, pesel, email, phoneNmber) VALUES(?,?,?,?,?)";
+		
+		protected String updateSql =
+				"UPDATE client SET (firstName, surname, pesel, email, phoneNmber) = (?,?,?,?,?) WHERE id=?";
 	
 	@Override
 	protected void setUpUpdateQuery(Client entity) throws SQLException {
@@ -39,12 +49,68 @@ public class ClientRepository extends Repository<Client>{
 
 	@Override
 	protected String getUpdateQuery() {
-		return "UPDATE client SET (firstName, surname, pesel, email, phoneNmber) = (?,?,?,?,?) WHERE id=?";
+		return updateSql;
 	}
 
 	@Override
 	protected String getInsertQuery() {
-		return "INSERT INTO client (firstName, surname, pesel, email, phoneNmber) VALUES(?,?,?,?,?)";
+		return insertSql;
+	}
+
+	@Override
+	public Client byUser(User user) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Client byUser(String login, String password) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Client byUser(int userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Client byAddress(Address address) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Client byAddress(String country, String city, String postCode,
+			String street, String number) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Client byAddress(int addressId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Client> ofCar(Car car) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Client> ofCar(String make, String model, int year,
+			double mileage, String fuelType, int engine) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Client> ofCar(int carId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

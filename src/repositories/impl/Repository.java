@@ -6,9 +6,10 @@ import java.util.*;
 import repositories.IRepository;
 import unitofwork.IUnitOfWork;
 import unitofwork.IUnitOfWorkRepository;
-import domain.*;
+import domain.Entity;
 
-public abstract class Repository<TEntity extends Entity> implements IRepository<TEntity>, IUnitOfWorkRepository{
+public abstract class Repository<TEntity extends Entity> 
+	implements IRepository<TEntity>, IUnitOfWorkRepository{
 
 	protected IUnitOfWork uow;
 	
@@ -32,9 +33,10 @@ public abstract class Repository<TEntity extends Entity> implements IRepository<
 	protected String selectAllSql=
 			"SELECT * FROM " + getTableName();
 	
-	protected Repository(Connection connection,
-			IEntityBuilder<TEntity> builder, IUnitOfWork ouw)
-	{
+	protected Repository(Connection connection, 
+			IEntityBuilder<TEntity> builder, IUnitOfWork uow) 
+		{
+		
 		this.uow=uow;
 		this.builder=builder;
 		this.connection = connection;

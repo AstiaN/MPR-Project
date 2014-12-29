@@ -1,13 +1,16 @@
 package repositories.impl;
 
 import java.sql.*;
+import java.util.List;
 
-import domain.*;
+import repositories.IAddressRepository;
+import domain.Address;
+import domain.Client;
 import unitofwork.IUnitOfWork;
 
-public class AddressRepository extends Repository<Address> {
+public class AddressRepository extends Repository<Address> implements IAddressRepository{
 
-	public AddressRepository(Connection connection, IEntityBuilder<Address> builder) {
+	protected AddressRepository(Connection connection, IEntityBuilder<Address> builder,IUnitOfWork uow) {
 		super(connection, builder, uow);
 	}
 	
@@ -51,7 +54,24 @@ public class AddressRepository extends Repository<Address> {
 	protected String getInsertQuery() {
 		return insertSql;
 	}
-	
-	
-	
+
+	@Override
+	public List<Address> ofClients(Client client) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Address> ofClients(String firstName, String surname,
+			String pesel, String email, double phoneNumber) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Address> ofClients(int clientId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+		
 }

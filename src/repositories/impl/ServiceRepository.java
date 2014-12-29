@@ -1,14 +1,17 @@
 package repositories.impl;
 
-import java.sql.Connection;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.List;
 
+import repositories.IServiceRepository;
+import domain.Car;
 import domain.Service;
+import unitofwork.IUnitOfWork;
 
-public class ServiceRepository extends Repository<Service>{
+public class ServiceRepository extends Repository<Service> implements IServiceRepository{
 
-	protected ServiceRepository(Connection connection,IEntityBuilder<Service> builder) {
-		super(connection, builder);
+	protected ServiceRepository(Connection connection,IEntityBuilder<Service> builder, IUnitOfWork uow) {
+		super(connection, builder, uow);
 	}
 	
 	protected String insertSql =
@@ -52,6 +55,25 @@ public class ServiceRepository extends Repository<Service>{
 	@Override
 	protected String getInsertQuery() {
 		return insertSql;
+	}
+
+	@Override
+	public List<Service> ofCar(Car car) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Service> ofCar(String make, String model, int year,
+			double mileage, String fuelType, int engine) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Service> ofCar(int carId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

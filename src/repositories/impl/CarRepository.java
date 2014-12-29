@@ -1,14 +1,18 @@
 package repositories.impl;
 
-import java.sql.Connection;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.List;
 
+import repositories.ICarRepository;
 import domain.Car;
+import domain.Client;
+import domain.Service;
+import unitofwork.IUnitOfWork;
 
-public class CarRepository extends Repository<Car>{
+public class CarRepository extends Repository<Car> implements ICarRepository{
 
-	protected CarRepository(Connection connection,IEntityBuilder<Car> builder) {
-		super(connection, builder);
+	protected CarRepository(Connection connection, IEntityBuilder<Car> builder, IUnitOfWork uow) {
+		super(connection, builder, uow);
 	}
 	
 	protected String insertSql =
@@ -46,12 +50,50 @@ public class CarRepository extends Repository<Car>{
 
 	@Override
 	protected String getUpdateQuery() {
-		return updateSql;
+		return "UPDATE car SET (make, model, year, mileage, fuelType, engine) = (?,?,?,?,?,?) WHERE id=?";
 	}
 
 	@Override
 	protected String getInsertQuery() {
-		return insertSql;
+		return "INSERT INTO car (make, model, year, mileage, fuelType, engine) VALUES(?,?,?,?,?,?)";
+	}
+
+	@Override
+	public List<Car> byClient(Client client) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Car> byClient(String firstName, String surname, String pesel,
+			String email, double phoneNumber) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Car> byClient(int clientId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Car byService(Service service) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Car byService(boolean tiresChange, boolean oilChange, boolean wash,
+			boolean painting, boolean mechanicReapair, boolean electricReapair) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Car byService(int serviceId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

@@ -1,19 +1,26 @@
 package repositories.impl;
 
-import java.sql.*; 
-import java.util.*;
+import java.sql.*;  
+import java.util.List;
 
-import domain.*;
-import unitofwork.IUnitOfWork;
 import repositories.IUserRepository;
+import domain.Client;
+import domain.User;
+import unitofwork.IUnitOfWork;
 
 
-public class UserRepository 
-extends Repository<User> implements IUserRepository{
+
+public class UserRepository extends Repository<User> implements IUserRepository{
 
 	public UserRepository(Connection connection, IEntityBuilder<User> builder, IUnitOfWork uow) {
 		super(connection, builder, uow);
 	}
+	
+	protected String insertSql =
+		"INSERT INTO user (login,password) VALUES(?,?)";
+		
+	protected String updateSql =
+		"UPDATE users SET (login,password)=(?,?) WHERE id=?";
 	
 	@Override
 	protected void setUpUpdateQuery(User entity) throws SQLException {
@@ -24,9 +31,9 @@ extends Repository<User> implements IUserRepository{
 	
 	@Override
 	protected void setUpInsertQuery(User entity) throws SQLException {
-		
 		insert.setString(1, entity.getLogin());
 		insert.setString(2, entity.getPassword());
+		insert.setInt(3, entity.getId());
 	}
 	@Override
 	protected String getTableName() {
@@ -35,12 +42,12 @@ extends Repository<User> implements IUserRepository{
 	
 	@Override
 	protected String getUpdateQuery() {
-		return "UPDATE users SET (login,password)=(?,?) WHERE id=?";
+		return updateSql;
 	}
 
 	@Override
 	protected String getInsertQuery() {
-		return "INSERT INTO user (login,password) VALUES(?,?)";
+		return insertSql;
 	}
 
 	@Override
@@ -61,17 +68,5 @@ extends Repository<User> implements IUserRepository{
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-	
-
-
-	
-	
-
-	
-
-	
-
-	
 
 }
