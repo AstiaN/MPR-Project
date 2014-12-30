@@ -12,7 +12,7 @@ import unitofwork.IUnitOfWork;
 
 public class ClientRepository extends Repository<Client> implements IClientRepository{
 
-	protected ClientRepository(Connection connection, IEntityBuilder<Client> builder, IUnitOfWork uow) {
+	public ClientRepository(Connection connection, IEntityBuilder<Client> builder, IUnitOfWork uow) {
 		super(connection, builder, uow);
 	}
 	

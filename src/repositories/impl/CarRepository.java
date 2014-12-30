@@ -11,7 +11,7 @@ import unitofwork.IUnitOfWork;
 
 public class CarRepository extends Repository<Car> implements ICarRepository{
 
-	protected CarRepository(Connection connection, IEntityBuilder<Car> builder, IUnitOfWork uow) {
+	public CarRepository(Connection connection, IEntityBuilder<Car> builder, IUnitOfWork uow) {
 		super(connection, builder, uow);
 	}
 	

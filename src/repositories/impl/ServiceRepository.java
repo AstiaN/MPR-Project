@@ -10,7 +10,7 @@ import unitofwork.IUnitOfWork;
 
 public class ServiceRepository extends Repository<Service> implements IServiceRepository{
 
-	protected ServiceRepository(Connection connection,IEntityBuilder<Service> builder, IUnitOfWork uow) {
+	public ServiceRepository(Connection connection,IEntityBuilder<Service> builder, IUnitOfWork uow) {
 		super(connection, builder, uow);
 	}
 	
