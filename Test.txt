@@ -1,1 +1,2 @@
-To jest Master i tak ma by� i chuj!
+To jest Master i tak ma byæ i chuj!
+A to jest druga linia która ma się pojawić na dysku :)
