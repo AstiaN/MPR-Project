@@ -1,15 +1,3 @@
 Test
 Test 1
 Test 2
-<<<<<<< master
-
-Dodatki 
-<<<<<<< HEAD
-Blalalalala
-=======
->>>>>>> local
-=======
-Blalalalala	
-
-Kolejny Branch
->>>>>>> 01a5fa3db62d35ce2c6766d061b58fafb3898dcd
