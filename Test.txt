@@ -3,4 +3,6 @@ Test 1
 Test 2
 
 Dodatki 
-Blalalalala
+Blalalalala	
+
+Kolejny Branch
